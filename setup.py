@@ -12,17 +12,19 @@ files = [os.path.join(path,x) for x in os.listdir(path) if x.endswith(".cpp")]
 sources += files
 
 
-if sys.platform.startswith('linux') or sys.platform == 'darwin':
-    macros = [('__linux__', '1')]
-else:
-    macros = [('__linux__', '0')]
+# if sys.platform.startswith('linux') or sys.platform == 'darwin':
+#     macros = [('__linux__', '1')]
+# else:
+macros = [('__linux__', '0')]
 
 
 exts = [Extension("pypoisson", sources,
         language="c++",
         define_macros=macros,
-        extra_compile_args = ["-w","-fopenmp"],
-        extra_link_args=["-fopenmp"]
+        # extra_compile_args = ["-w","-fopenmp"],
+        # extra_link_args=["-fopenmp"]
+        extra_compile_args = ["-w","/openmp"],
+        extra_link_args=["/openmp"]
         )]
 setup(
     name='pypoisson',
